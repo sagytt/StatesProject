@@ -24,7 +24,7 @@ class CountryBlocker
         $location = geoip()->getLocation($ip);
 //        dd($location);die();
         // List of blocked country codes
-        $blockedCountries = ['US'];
+        $blockedCountries = ['IL'];
 
         // Check if the visitor's country is in the blocked list
         if ($location && in_array($location->getAttribute('iso_code'), $blockedCountries)) {
