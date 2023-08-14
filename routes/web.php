@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+
 Route::group(['middleware' => ['guest', 'countryblocker']], function () {
     Route::get('/', [AuthController::class, 'index'])->name('login');
     Route::get('login', [AuthController::class, 'index'])->name('login');
@@ -31,5 +32,10 @@ Route::group(['middleware' => ['guest', 'countryblocker']], function () {
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('home', [AuthController::class, 'home'])->name('home');
-
+    Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+    Route::post('insert-state', [StateController::class, 'insert_state'])->name('insert');
+    Route::get('/home', [StateController::class, 'Showdata'])->name('home');
+    Route::get('delete/{id}', [StateController::class, 'delete_state']);
+    Route::get('edit/{id}', [StateController::class, 'edit_state']);
+    Route::post('update/{id}', [StateController::class, 'update_state']);
 });
